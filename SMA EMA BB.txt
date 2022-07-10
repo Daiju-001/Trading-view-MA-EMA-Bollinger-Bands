@@ -1,6 +1,7 @@
 //@version=5
-indicator(title="EMA/MA/BB", overlay=true , timeframe="")
 
+
+indicator(title="EMA/MA/BB", overlay=true , timeframe="")
 
 // Input options EMA
 
@@ -54,8 +55,12 @@ plot(SMA3, color=color.blue,   title="SMA3")
 plot(SMA4, color=color.black,  title="SMA4")
 plot(SMA5, color=color.green,  title="SMA5")
 
-//Bollinger Bands
 
+
+
+
+
+//Bollinger Bands
 
 length = input.int(20, minval=1)
 src = input(close, title="Source")
