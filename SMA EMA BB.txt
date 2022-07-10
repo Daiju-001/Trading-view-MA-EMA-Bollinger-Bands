@@ -1,0 +1,83 @@
+//@version=5
+indicator(title="EMA/MA/BB", overlay=true , timeframe="")
+
+
+// Input options EMA
+
+averageData = input.source(close, title="Average Data Source")
+
+EMA_1 = input.int(20, title="EMA 1")
+EMA_2 = input.int(50, title="EMA 2")
+EMA_3 = input.int(100, title="EMA 3")
+EMA_4 = input.int(150, title="EMA 4")
+EMA_5 = input.int(200, title="EMA 5")
+
+// Calculate EMA
+
+EMA1 = ta.ema(averageData, EMA_1)
+EMA2 = ta.ema(averageData, EMA_2)
+EMA3 = ta.ema(averageData, EMA_3)
+EMA4 = ta.ema(averageData, EMA_4)
+EMA5 = ta.ema(averageData, EMA_5)
+
+// Plot averages EMA
+
+plot(EMA1, color=color.orange, title="EMA1")
+plot(EMA2, color=color.red,    title="EMA2")
+plot(EMA3, color=color.blue,   title="EMA3")
+plot(EMA4, color=color.black,  title="EMA4")
+plot(EMA5, color=color.green,  title="EMA5")
+
+// Input Options SMA
+
+averageData1 = input.source(close, title="Average Data Source")
+
+SMA_1 = input.int(20, title="SMA 1")
+SMA_2 = input.int(50, title="SMA 2")
+SMA_3 = input.int(100, title="SMA 3")
+SMA_4 = input.int(150, title="SMA 4")
+SMA_5 = input.int(200, title="SMA 5")
+
+// Calculate SMA
+
+SMA1 = ta.sma(averageData1, SMA_1)
+SMA2 = ta.sma(averageData1, SMA_2)
+SMA3 = ta.sma(averageData1, SMA_3)
+SMA4 = ta.sma(averageData1, SMA_4)
+SMA5 = ta.sma(averageData1, SMA_5)
+
+// Plot averages SMA
+
+plot(SMA1, color=color.orange, title="SMA1")
+plot(SMA2, color=color.red,    title="SMA2")
+plot(SMA3, color=color.blue,   title="SMA3")
+plot(SMA4, color=color.black,  title="SMA4")
+plot(SMA5, color=color.green,  title="SMA5")
+
+//Bollinger Bands
+
+
+length = input.int(20, minval=1)
+src = input(close, title="Source")
+mult = input.float(2.0, minval=0.001, maxval=50, title="StdDev")
+
+basis = ta.sma(src, length)
+dev = mult * ta.stdev(src, length)
+upper = basis + dev
+lower = basis - dev
+offset = input.int(0, "Offset", minval = -500, maxval = 500)
+
+plot(basis, "BB Basis", color=#FF6D00, offset = offset)
+p1 = plot(upper, "BB Upper", color=#2962FF, offset = offset)
+p2 = plot(lower, "BB Lower", color=#2962FF, offset = offset)
+fill(p1, p2, title = "Background", color=color.rgb(33, 150, 243, 95))
+
+
+
+
+
+
+
+
+
+
